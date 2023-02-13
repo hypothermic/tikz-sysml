@@ -1,0 +1,80 @@
+%% -----------------------------------------------
+%% File:    tikz-sysml.sty
+%% Author:  Matthijs Bakker <admin@hypothermic.nl>
+%% License: GNU GPL v2.0
+%%
+%% TikZ-SysML: macros for drawing SysML diagrams
+%% https://github.com/hypothermic/tikz-sysml
+%% -----------------------------------------------
+
+\def\sysml@date{2023/02/08}
+\def\sysml@version@major{0}
+\def\sysml@version@minor{0}
+\def\sysml@version@patch{1}
+\edef\sysml@version{\sysml@version@major.\sysml@version@minor.\sysml@version@patch}
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tikz-sysml}[\sysml@date v\sysml@version Macros for drawing SysML diagrams with TikZ]
+
+%% -----------------------------------------------
+
+\RequirePackage{pgfopts}
+\RequirePackage{tikz}[2013/12/13] % v3.0.0
+\usetikzlibrary{
+	arrows,
+	arrows.meta, % arrowheads
+	decorations.pathmorphing, % exception-style line breaks
+	fit, % frames & regions
+	math,
+	positioning % left/above/right/below of...
+}
+
+%% -----------------------------------------------
+
+\newlength{\sysml@padding}
+\newlength{\sysml@rounding}
+\newlength{\sysml@spacing}
+\newlength{\sysml@shapesize}
+
+\setlength{\sysml@padding}{5pt}
+\setlength{\sysml@rounding}{5pt}
+\setlength{\sysml@spacing}{12pt}
+\setlength{\sysml@shapesize}{12pt}
+
+\tikzset{
+	sysml frag/.style={draw, inner sep=0, anchor=west},
+	sysml frag head/.style={draw, inner sep=\sysml@padding, anchor=west},
+	sysml swim/.style={draw, inner sep=0, outer sep=\sysml@spacing},
+	sysml swim head/.style={draw, rotate=90, align=center, inner sep=\sysml@padding, outer sep=0, minimum height=3.5em, minimum width=15ex},
+	sysml region/.style={draw, inner sep=\sysml@padding, rounded corners=\sysml@rounding},
+	sysml region interruptable/.style={sysml region, dashed, inner xsep=\sysml@padding, inner ysep=3\sysml@padding, yshift=2\sysml@padding},
+	sysml block/.style={draw, align=center, fill=black!10, inner sep=2\sysml@padding, outer sep=0, rounded corners=\sysml@rounding},
+	sysml exception/.style={draw, fill=white, signal, signal from=west, signal to=nowhere, align=center, inner sep=\sysml@padding, outer sep=0},
+	sysml label/.style={align=left, outer sep=0.35\sysml@padding},
+	sysml node/.style={inner sep=0, outer sep=0},
+	sysml node initial/.style={sysml node, fill, circle, minimum size=\sysml@shapesize},
+	sysml node final/.style={sysml node, draw, fill, double, double distance=0.2\sysml@shapesize, circle, minimum size=\sysml@shapesize},
+	sysml node decision/.style={sysml node, fill, diamond, minimum size=\sysml@shapesize, shape aspect=2},
+	sysml port/.style={draw, minimum size=0.65\sysml@shapesize, inner sep=0, outer sep=0},
+	sysml port label/.style={sysml label},
+	sysml arrow/.style={-{Stealth[length=2mm, width=2mm]}, rounded corners=\sysml@rounding},
+	sysml arrow dashed/.style={sysml arrow, dashed},
+	sysml arrow raise/.style={sysml arrow, rounded corners=0, decorate, decoration={zigzag, amplitude=2mm, segment length=4mm, pre length=3mm, post length=3mm}}
+}
+
+%\pgfdeclarelayer{sysml-swimlanes}
+%
+%\newenvironment{fragment}[1][]{
+%}{
+%}
+%
+%\newenvironment{sysml}{
+%	\begin{fragment}[act]
+%}{
+%	\end{fragment}
+%	\pgfsetlayers{sysml-swimlanes,main}
+%}
+
+% end of tikz-sysml.sty
+\endinput
+
