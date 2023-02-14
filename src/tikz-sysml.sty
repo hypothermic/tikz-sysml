@@ -56,10 +56,12 @@
 	sysml node final/.style={sysml node, draw, fill, double, double distance=0.2\sysml@shapesize, circle, minimum size=\sysml@shapesize},
 	sysml node decision/.style={sysml node, fill, diamond, minimum size=\sysml@shapesize, shape aspect=2},
 	sysml port/.style={draw, minimum size=0.65\sysml@shapesize, inner sep=0, outer sep=0},
+	sysml proxy/.style={sysml port, fill=white, minimum width=\sysml@shapesize},
 	sysml port label/.style={sysml label},
 	sysml arrow/.style={-{Stealth[length=2mm, width=2mm]}, rounded corners=\sysml@rounding},
 	sysml arrow dashed/.style={sysml arrow, dashed},
-	sysml arrow raise/.style={sysml arrow, rounded corners=0, decorate, decoration={zigzag, amplitude=2mm, segment length=4mm, pre length=3mm, post length=3mm}}
+	sysml arrow raise/.style={sysml arrow, rounded corners=0, decorate, decoration={zigzag, amplitude=2mm, segment length=4mm, pre length=3mm, post length=3mm}},
+	sysml arrow proxy/.style={sysml arrow, -{Straight Barb[length=1.2mm, width=1mm]}}
 }
 
 %\pgfdeclarelayer{sysml-swimlanes}
@@ -75,7 +77,7 @@
 %	\pgfsetlayers{sysml-swimlanes,main}
 %}
 
-\newcommand{\sysmlistereo}[1]{\small\guillemotleft #1\guillemotright}
+\newcommand{\sysmlistereo}[1]{{\small\guillemotleft #1\guillemotright}}
 \newcommand{\sysmlstereo}[1]{\sysmlistereo\\}
 
 % end of tikz-sysml.sty
